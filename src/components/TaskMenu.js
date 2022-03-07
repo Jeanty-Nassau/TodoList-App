@@ -59,18 +59,18 @@ function TaskMenu() {
         </div>
         <p onClick={showAllClick} className='cursor-pointer'>{!toggleShowAll ? 'Show' : 'Hide'}</p>
       </div>
-      {showAddForm ? <form onSubmit={e => { handleSubmit(e) }} className='border border-slate-500 rounded-md absolute flex space-x-2 bg-slate-500 justify-center items-center w-96 h-32 p-4'>
+      {showAddForm && <form onSubmit={e => { handleSubmit(e) }} className='border border-slate-500 rounded-md absolute flex space-x-2 bg-slate-500 justify-center items-center w-96 h-32 p-4'>
         <input type="text" onChange={e => { handleChange(e) }} value={formInput} id="" className=' mb-0 focus:outline-none focus:border-slate-900 border rounded-md w-80 p-2' />
         <button type="submit" className='text-white text-bold border border-black rounded bg-black p-2'>Ok</button>
-      </form> : <></>}
+      </form>}
       <div className='flex flex-col justify-center items-left mx-2 my-4'>
-        <ul>
+        <ul className='w-full'>
           {todos.filter((todo) => todo.category === category && todo.completed === false).map((todo, i) => (
             <TodoItem key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} category={todo.category} />
           ))}
-          {toggleShowAll ? todos.filter((todo) => todo.category === category && todo.completed === true).map((todo, i) => (
+          {toggleShowAll && todos.filter((todo) => todo.category === category && todo.completed === true).map((todo, i) => (
             <TodoItem key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} category={todo.category} />
-          )) : <></>}
+          ))}
         </ul>
 
       </div>

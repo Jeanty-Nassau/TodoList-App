@@ -21,8 +21,9 @@ function Nav() {
     return !arr.includes(formInput) ? true : false;
   }
 
-  const openCategory = (category) => {
-    navigate(`/taskMenu/${category}`);
+  const openCategory = () => {
+    navigate(`/`);
+    console.log('open Category');
   };
 
   useEffect(() => {
@@ -55,7 +56,7 @@ function Nav() {
         />
       </div>
 
-      <div className='flex bg-opacity-60 backdrop-filter backdrop-blur-lg bg-white cursor-pointer justify-between w-1/2  p-2 rounded-md'>
+      <div onClick={() => openCategory()} className='flex bg-opacity-60 backdrop-filter backdrop-blur-lg bg-white cursor-pointer justify-between w-1/2  p-2 rounded-md'>
         <h1>All</h1>
         <h1>{todos.length}</h1>
       </div>
@@ -68,9 +69,7 @@ function Nav() {
           ))}
         </ul>
 
-        <button onClick={() => setShowAddForm(!showAddForm)} type={'button'} className='border my-2 rounded-md px-3 py-1 border-black hover:border-blue-300'>{'+ Add List'}</button>
-        <button type={'button'} className='border my-2 rounded-md px-3 py-1 border-black hover:border-blue-300'>{'- Remove List'}</button>
-        {showAddForm ? <form onSubmit={e => { handleSubmit(e) }} className='border border-slate-500 rounded-md absolute z-10 flex space-x-2 bg-slate-500 justify-center items-center w-40 h-36 p-4'>
+        <button onClick={() => setShowAddForm(!showAddForm)} type={'button'} className='border my-2 rounded-md px-3 py-1 border-black hover:border-blue-300'>{'+ Add List'}</button>        {showAddForm ? <form onSubmit={e => { handleSubmit(e) }} className='border border-slate-500 rounded-md absolute z-10 flex space-x-2 bg-slate-500 justify-center items-center w-40 h-36 p-4'>
           <input type="text" onChange={e => { handleChange(e) }} value={formInput} id="" className=' mb-0 focus:outline-none focus:border-slate-900 border rounded-md w-3/4 p-2' />
           <button type="submit" className='text-white text-bold border border-black rounded bg-black p-2'>Ok</button>
         </form> : <></>}

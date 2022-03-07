@@ -15,9 +15,18 @@ export const categorySlice = createSlice({
     selectCategory: (state, action) => {
       const index = state.findIndex((category) => category.title === action.payload.title);
       state[index].selectedCategory = action.payload.selectedCategory;
-    }
+    },
+    //updateCategory
+    updateCategory: (state, action) => {
+      const index = state.findIndex((category) => category.title === action.payload.title);
+      state[index] = action.payload.title;
+    },
+    //deleteCategory
+    deleteCategory: (state, action) => {
+      return state.filter((category) => category !== action.payload.title);
+    },
   },
 });
 
-export const { addCategory, selectCategory } = categorySlice.actions;
+export const { addCategory, selectCategory, updateCategory, deleteCategory } = categorySlice.actions;
 export default categorySlice.reducer;

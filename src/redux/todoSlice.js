@@ -26,10 +26,20 @@ export const todoSlice = createSlice({
     },
     deleteTodo: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload.id);
+    },
+    //updateCategory
+    upateCategory: (state, action) => {
+      const index = state.findIndex((todo) => todo.id === action.payload.id);
+      state[index].category = action.payload.category;
+    },
+    //updateTodoTitle
+    updateTodoTitle: (state, action) => {
+      const index = state.findIndex((todo) => todo.id === action.payload.id);
+      state[index].title = action.payload.title; 
     }
   },
 });
 
-export const { addTodo, toggleComplete, deleteTodo } = todoSlice.actions;
+export const { addTodo, toggleComplete, deleteTodo, updateTodoTitle, updateCategory } = todoSlice.actions;
 
 export default todoSlice.reducer;
