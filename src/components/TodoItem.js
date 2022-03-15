@@ -5,12 +5,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import EditableLable from './EditableLable';
 
-function TodoItem({ id, title, completed, category }) {
+
+function TodoItem({ id, title, completed }) {
   const [value, setValue] = useState(completed);
   const dispatch = useDispatch();
   const inputRef = useRef();
 
   const handleCheckboxClick = () => {
+
     dispatch(
       toggleComplete({ id, completed: !completed })
     );
@@ -20,7 +22,6 @@ function TodoItem({ id, title, completed, category }) {
   }
 
   const handleChange = (e) => {
-    setValue(e.target.value);
     dispatch(
       updateTodoTitle({ id, title: e.target.value })
     );
@@ -28,11 +29,11 @@ function TodoItem({ id, title, completed, category }) {
 
   return (
     <li>
-      <div className='flex text-left items-center w-full'>
+      <div className='flex text-left items-center w-full grow my-2 py-4 border-b border-[#efefef]'>
 
-        <input onClick={handleCheckboxClick} onChange={() => setValue(completed)} checked={value} className='text-4xl mt-4 cursor-pointer' type="checkbox" name={id} id={id} />
-        <EditableLable id={id} childRef={inputRef} className='w-full' type={'text'} type={'input'} text={title}>
-          <input ref={inputRef} onChange={(e) => handleChange(e)} className='text-xl grow ml-4 mt-2 border-b' type={'text'} name={id} value={title} />
+        <input onClick={handleCheckboxClick} onChange={() => setValue(completed)} checked={value} className='text-4xl cursor-pointer' type="checkbox" name={id} id={id} />
+        <EditableLable id={id} childRef={inputRef} className='w-full' type={'input'} text={title} textSize={'text-lg'}>
+          <input ref={inputRef} onChange={(e) => handleChange(e)} className='text-lg grow ml-4  border-b' type={'text'} name={id} value={title} />
         </EditableLable>
         {/* <EditIcon color='disabled' className='cursor-pointer ' /> */}
         <DeleteIcon onClick={deleteTodoClick} color='disabled' className='cursor-pointer ' />

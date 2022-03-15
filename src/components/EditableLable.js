@@ -4,7 +4,7 @@ import { updateTodoTitle } from '../redux/todoSlice';
 /** Component accept text, placeholder values and also pass what type of Input - input, 
 * textarea so that we can use it for styling accordingly
 */
-function EditableLable({ text, type, placeholder, children, childRef, ...props }) {
+function EditableLable({ text, type, placeholder, children, childRef, textSize, ...props }) {
   /**
     * Manage the state whether to show the label or the input box. By default, label will be shown.
     * Exercise: It can be made dynamic by accepting initial state as props outside the component 
@@ -41,14 +41,14 @@ function EditableLable({ text, type, placeholder, children, childRef, ...props }
   */
 
   return (
-    <section {...props} className='w-full grow'>
+    <section {...props} className='w-full'>
       {isEditing ? (
         <div className='w-full grow' onBlur={() => setEditing(false)} onKeyDown={e => handleKeyDown(e, type)} >
           {children}
         </div>
       ) : (
-        <div onClick={() => setEditing(true)} className='text-xl w-full grow ml-4 mt-2 border-b'>
-          <span className='w-full grow'>
+          <div onDoubleClick={() => setEditing(true)} className={`${textSize} ml-4 `}>
+            <span >
             {text || placeholder || 'Editable content'}
           </span>
         </div>

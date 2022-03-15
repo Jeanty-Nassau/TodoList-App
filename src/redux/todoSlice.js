@@ -4,11 +4,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const todoSlice = createSlice({
   name: 'todos',
   initialState: [
-    { id: 1, title: 'Wash the car', category: 'Daily tasks', completed: true },
-    { id: 2, title: 'Wash the house', category: 'Daily tasks', completed: false },
-    { id: 3, title: 'drive the car', category: 'Daily tasks', completed: false },
-    { id: 4, title: 'build the car', category: 'Daily tasks', completed: false },
-    { id: 5, title: 'Wash the dishes and dry it off', category: 'Daily tasks', completed: false }
+    { id: 1, title: 'Wash the car', category: '1', completed: true },
+    { id: 2, title: 'Wash the house', category: '1', completed: false },
+    { id: 3, title: 'drive the car', category: '1', completed: false },
+    { id: 4, title: 'build the car', category: '1', completed: false },
+    { id: 5, title: 'Wash the dishes and dry it off', category: '1', completed: false }
   ],
   reducers: {
     addTodo: (state, action) => {
@@ -19,6 +19,7 @@ export const todoSlice = createSlice({
         completed: false,
       };
       state.push(todo);
+      console.log('todo has been added');
     },
     toggleComplete: (state, action) => {
       const index = state.findIndex((todo) => todo.id === action.payload.id);
@@ -27,19 +28,15 @@ export const todoSlice = createSlice({
     deleteTodo: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload.id);
     },
-    //updateCategory
-    upateCategory: (state, action) => {
-      const index = state.findIndex((todo) => todo.id === action.payload.id);
-      state[index].category = action.payload.category;
-    },
     //updateTodoTitle
     updateTodoTitle: (state, action) => {
       const index = state.findIndex((todo) => todo.id === action.payload.id);
       state[index].title = action.payload.title; 
+      console.log('todo title has been updated');
     }
   },
 });
 
-export const { addTodo, toggleComplete, deleteTodo, updateTodoTitle, updateCategory } = todoSlice.actions;
+export const { addTodo, toggleComplete, deleteTodo, updateTodoTitle } = todoSlice.actions;
 
 export default todoSlice.reducer;

@@ -3,27 +3,26 @@ import { createSlice } from '@reduxjs/toolkit';
 export const categorySlice = createSlice({
   name: 'categories',
   initialState: [
-    { title: 'Daily tasks' },
+    { id: 1, title: 'Daily tasks' },
   ],
   reducers: {
     addCategory: (state, action) => {
       const category = {
+        id: state.length + 1,
         title: action.payload.title,
       };
       state.push(category);
-    },
-    selectCategory: (state, action) => {
-      const index = state.findIndex((category) => category.title === action.payload.title);
-      state[index].selectedCategory = action.payload.selectedCategory;
+      console.log('category has been added', state);
     },
     //updateCategory
     updateCategory: (state, action) => {
-      const index = state.findIndex((category) => category.title === action.payload.title);
-      state[index] = action.payload.title;
+      const index = state.findIndex((category) => category.id === action.payload.id);
+      state[index].title = action.payload.title;
+      console.log('category has been updated', state);
     },
     //deleteCategory
     deleteCategory: (state, action) => {
-      return state.filter((category) => category !== action.payload.title);
+      return state.filter((category) => category.id !== action.payload.id);
     },
   },
 });

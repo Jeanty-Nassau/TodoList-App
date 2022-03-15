@@ -3,20 +3,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import TodoItem from './TodoItem';
 
 function AllMenu() {
-  const category = '';
   const todos = useSelector((state) => state.todos);
   const todoCategories = [...new Set(todos.map((todo) => todo.category))];
+  console.log('todoCategories in AllMenu:', todoCategories);
   const [toggleShowAll, setToggleShowAll] = useState(false);
+  const categories = useSelector((state) => state.categories);
   const [formInput, setFormInput] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
     setFormInput(`New Task ${todos.length < 1 ? 1 : todos.length + 1}`);
-    console.log(todos);
   }, [todos]);
 
   const showAllClick = () => {
     setToggleShowAll(!toggleShowAll);
-    console.log('toggleShowAll:', toggleShowAll);
+  }
+
+  const findCategoryTitle = (todoCategory) => {
+    const index = categories.findIndex((category) => category.id == todoCategory);
+    return categories[index].title;
   }
 
   const handleChange = (e) => {
@@ -40,13 +44,13 @@ function AllMenu() {
 
       {todoCategories.map((category, i) => (
         <div key={i}>
-          <h1 className='text-3xl mb-2'>{category}</h1>
+          <h1 className='text-3xl mb-2'>{findCategoryTitle(category)}</h1>
           <ul className='w-full flex flex-col justify-center items-left mx-2 my-4'>
             {todos.filter((todo) => todo.category === category && todo.completed === false).map((todo, i) => (
-              <TodoItem key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} category={todo.category} />
+              <TodoItem key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} />
             ))}
             {toggleShowAll && todos.filter((todo) => todo.category === category && todo.completed === true).map((todo, i) => (
-              <TodoItem key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} category={todo.category} />
+              <TodoItem key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} />
             ))}
           </ul>
 
