@@ -29,7 +29,7 @@ function TodoItem({ id, title, completed }) {
 
   return (
     <li>
-      <div className='flex text-left items-center w-full grow my-2 py-4 border-b border-[#efefef]'>
+      <div className='flex text-left items-center w-full grow my-2 py-4 border-b border-[#efefef] hover:bg-[#efefef]'>
 
         <input onClick={handleCheckboxClick} onChange={() => setValue(completed)} checked={value} className='text-4xl cursor-pointer' type="checkbox" name={id} id={id} />
         <EditableLable id={id} childRef={inputRef} className='w-full' type={'input'} text={title} textSize={'text-lg'}>

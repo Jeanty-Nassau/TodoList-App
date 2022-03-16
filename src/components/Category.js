@@ -48,9 +48,9 @@ function Category({ id, title, todoAmount, categoryList, active, onClick }) {
   return (
     <li key={id}>
       <div onClick={handleClick} onMouseEnter={() => setShowDelete(true)} onMouseLeave={() => setShowDelete(false)} title={title}
-        className={active ? 'flex mb-2 cursor-pointer items-center w-full rounded-[2.5rem] h-[56px] shadow-md bg-[#efefef] px-5 py-4' :
-          'flex mb-2 cursor-pointer items-center w-full px-5 h-[56px] py-4 h-max'}>
-        <div className='bg-green-200 w-3 h-3 rounded-full ' />
+        className={active ? 'flex mb-2 cursor-pointer items-center w-full rounded-[2.5rem] h-[56px] shadow-inner  bg-[#efefef] px-5 py-4  hover:bg-[#E7E7E7]' :
+          'flex mb-2 cursor-pointer items-center w-full px-5 h-[56px] py-4 bg-white rounded-[2.5rem] hover:shadow-md'}>
+        <div className='bg-green-200 w-3 h-3 rounded-full ' />   
         <div className='flex justify-between w-full items-center'>
           <EditableLable id={id} childRef={ref} text={title} type={'input'} textSize={'text-sm'}>
             <input onChange={(e) => handleChange(e)} ref={ref} className='ml-4 w-4/5 text-sm' type={'text'} name={title} value={title} />

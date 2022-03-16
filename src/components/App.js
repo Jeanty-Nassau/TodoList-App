@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from './Home';
 import TaskMenu from './TaskMenu';
 import Nav from './Nav'
 import AllMenu from './AllMenu';

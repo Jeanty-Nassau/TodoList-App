@@ -40,24 +40,22 @@ function Search() {
   }
 
   return (
-    <div className='flex-grow p-8 overflow-x-hidden overflow-y-scroll'>
+    <div className='flex-grow overflow-x-hidden overflow-y-scroll'>
 
-      <div className='flex justify-between items-center '>
+      <div className='flex justify-between items-center px-8 py-4'>
         <h1 className='text-5xl  mb-4 grow'>{`Results for "${search}"`}</h1>
         <h1 className='text-5xl  text-center mb-4'>{findSearchTodos().filter((todo) => (todo.completed === false)).length}</h1>
-      </div>
-      <div className='flex justify-between pb-2 border-b'>
-        <div className='flex justify-evenly'>
-          <p className='mx-2'> {`${findSearchTodos().filter((todo) => (todo.completed === true)).length} Completed`}</p>
-          <p className='mx-2'>&middot; Clear</p>
-        </div>
-        <p onClick={showAllClick} className='cursor-pointer'>{!toggleShowAll ? 'Show' : 'Hide'}</p>
+      </div >
+      <div className='bg-[#efefef] h-full px-8 w-full'>
+        <div className='flex py-2'>
+          <p className='text-[#848484]'> {`${findSearchTodos().filter((todo) => (todo.completed === true)).length} Completed ·`}</p>
+          <p onClick={showAllClick} className='cursor-pointer ml-4'>{!toggleShowAll ? 'Show' : 'Hide'}</p>
       </div>
 
       {todoCategories.map((category, i) => (
         <div key={i}>
-          <h1 className='text-3xl mb-2'>{findCategoryTitle(category)}</h1>
-          <ul className='w-full flex flex-col justify-center items-left mx-2 my-4'>
+          <h1 className='text-3xl mb-2 pt-4'>{findCategoryTitle(category)}</h1>
+          <ul className='flex flex-col justify-start items-left my-4 bg-white rounded-xl px-4 py-8 shadow-md'>
             {findSearchTodos().filter((todo) => todo.category == category && todo.completed === false).map((todo, i) => (
               <TodoItem key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} />
             ))}
@@ -68,7 +66,7 @@ function Search() {
 
         </div>
       ))}
-
+      </div>
     </div>
   )
 }
